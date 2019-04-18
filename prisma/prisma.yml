@@ -1,0 +1,18 @@
+# The HTTP Endpoint for the Prisma API
+#endpoint: ''
+endpoint: https://us1.prisma.sh/trey-hamilton-4bfcd5/hackernew-node/dev
+
+
+# Points to the file that contains the datamodel
+datamodel: datamodel.prisma
+
+# Specidifes language & location for the generated Prisma client
+generate:
+  - generator: javascript-client
+    output: ../src/generated/prisma-client
+
+# Post-deployment hook configuration
+# So our prisma client will get regenerated after we redeploy our prisma model updates
+hooks:
+  post-deploy: 
+    - prisma generate
